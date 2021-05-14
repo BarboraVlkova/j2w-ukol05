@@ -85,6 +85,15 @@ a:hover .vizitka {
     justify-content: center;
     align-items: center;
 }
+.detail .pridejPrazdnyRadek {
+    display: block;
+    margin-top: 1em;
+}
+.detail .vytvorSkupinu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 .detail nav {
     margin: 1em;

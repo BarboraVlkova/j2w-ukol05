@@ -3,10 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrace na letní dětský tábor</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="/images/favicon.png">
+        <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
-    TODO
+<STRONG>
+<div class="seznam" style="color: white">
+
+    <form class="detail" th:action="@{/}" method="post">
+
+        <h1> Registrace na letní dětský tábor</h1>
+
+        <!-- NAPSAT JMENO -->
+        <!-- pozor na required/ => mas vypsat chybovou hlasku-->
+        <!-- chybova hlaska-->
+        <label for="jmeno" class="pridejPrazdnyRadek">Jméno: </label>
+        <input id="jmeno" type="text" th:field="${form.jmeno}" required/>
+        <div class="error" style="color: red" th:if="${#fields.hasErrors('form.jmeno')}" th:errors="${form.jmeno}"></div>
+
+        <!-- NAPSAT PRIJMENI -->
+        <!-- chybova hlaska -->
+        <label for="prijmeni" class="pridejPrazdnyRadek">Příjmení: </label>
+        <input id="prijmeni" type="text" th:field="${form.prijmeni}" required/>
+        <div class="error" style="color: red" th:if="${#fields.hasErrors('form.prijmeni')}" th:errors="${form.prijmeni}"></div>
+
+
+        <!-- VYBRAT POHLAVI-->
+        <!-- chybova hlaska -->
+        <div class="pridejPrazdnyRadek">Pohlaví: </div>
+        <div class="vytvorSkupinu">
+            <div>
+                <input type="radio" th:field="${form.pohlavi}" value="CHLAPEC" required/>
+                <label th:for="${#ids.prev('pohlavi')}">chlapec</label>
+            </div>
+            <div>
+                <input type="radio" th:field="${form.pohlavi}" value="DIVKA" required/>
+                <label th:for="${#ids.prev('pohlavi')}">dívka</label>
+            </div>
+            <div>
+                <input type="radio" th:field="${form.pohlavi}" value="NECHCI_UVEST" required/>
+                <label th:for="${#ids.prev('pohlavi')}">nechci uvést</label>
+            </div>
+        </div>
+        <div class="error" style="color: red" th:if="${#fields.hasErrors('form.pohlavi')}" th:errors="${form.pohlavi}"></div>
+
+
+        <!-- DATUM NAROZENI -->
+        <!-- pozor na type="text"  =>  je to type="date" -->
+        <!-- chybova hlaska -->
+        <label for="datumNarozeni" class="pridejPrazdnyRadek">Datum narozeni: </label>
+        <input id="datumNarozeni" type="date" th:field="${form.datumNarozeni}" required/>
+        <div class="error" style="color: red" th:if="${#fields.hasErrors('form.datumNarozeni')}" th:errors="${form.datumNarozeni}"></div>
+
+
+        <!-- TERMIN TURNUSU -->
+        <!-- misto <option SELECTED=""></option> je VALUE, jinak chybova hlaska -->
+        <!-- chybova hlaska -->
+        <label for="turnus" class="pridejPrazdnyRadek">Turnus: </label>
+        <select id="turnus" th:field="${form.turnus}" required>
+            <option value=""></option>
+            <option value="1">5.6. - 11.6. 2021</option>
+            <option value="2">12.6. - 18.6 2021</option>
+            <option value="3">9.6. - 25.6 2021</option>
+        </select>
+        <div class="error" style="color: red" th:if="${#fields.hasErrors('form.turnus')}" th:errors="${form.turnus}"></div>
+
+
+        <!-- VYBRAT SPORT -->
+        <!-- chybova hlaska -->
+        <div class="pridejPrazdnyRadek">Vyberte sport: </div>
+            <div>
+                <input type="checkbox" th:field="${form.sport}" value="FLORBAL">
+                <label th:for="${#ids.prev('sport')}">florbal</label>
+            </div>
+            <div>
+                <input type="checkbox" th:field="${form.sport}" value="FOTBAL" >
+                <label th:for="${#ids.prev('sport')}">fotbal</label>
+            </div>
+            <div>
+                <input type="checkbox" th:field="${form.sport}" value="BASKETBALL" >
+                <label th:for="${#ids.prev('sport')}">basketball</label>
+            </div>
+            <div>
+                <input type="checkbox" th:field="${form.sport}" value="VOLEJBAL" >
+                <label th:for="${#ids.prev('sport')}">volejbal</label>
+            </div>
+            <div>
+                <input type="checkbox" th:field="${form.sport}" value="STOLNI_TENIS">
+                <label th:for="${#ids.prev('sport')}">stolní tenis</label>
+            </div>
+            <div>
+                <input type="checkbox" th:field="${form.sport}" value="BASEBALL">
+                <label th:for="${#ids.prev('sport')}">baseball</label>
+            </div>
+            <div class="error" style="color: red" th:if="${#fields.hasErrors('form.sport')}" th:errors="${form.sport}"></div>
+
+
+        <!-- TELEFON (volitelny údaj) -->
+        <div class="pridejPrazdnyRadek">
+            <label for="telefon" class="form-label">Telefon (volitelný): </label>
+            <input type="text" class="form-control" id="telefon" th:field="${form.telefon}">
+            <!-- <div class="error" th:if="${#fields.hasErrors('form.telefon')}" th:errors="${form.telefon}"></div>-->
+        </div>
+
+
+        <!-- EMAIL (volitelny údaj) -->
+        <div class="pridejPrazdnyRadek">
+            <label for="email" class="form-label">Email (volitelný): </label>
+            <input type="email" class="form-control" id="email" th:field="${form.email}">
+            <!-- <div class="error" th:if="${#fields.hasErrors('form.email')}" th:errors="${form.email}"></div>-->
+        </div>
+
+
+        <!-- TLACITKO PRO ODESLANI FORMULARE -->
+        <div class="pridejPrazdnyRadek">
+            <button type="submit" class="btn btn-primary">Registrovat</button>
+        </div>
+    </form>
+</div>
+</STRONG>
 </body>
+
 </html>
