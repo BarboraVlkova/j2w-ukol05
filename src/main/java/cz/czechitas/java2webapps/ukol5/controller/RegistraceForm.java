@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.EnumSet;
@@ -14,21 +15,29 @@ import java.util.EnumSet;
 // vytvoreni GETTERU a SETTERU
 // DATE a TIME FORMAT (u data narozeni)
 
+// @NotNull = pouziti na libovolny objekt, hodnota nesmi byt nulova
+//           u data je vzdy validace null
+// @NotEmpty = pouziti tam,kde dava smysl rozlisovat prazdnou hodnotu => hodnota nesmi byt null a zaroven nesmi byt prazdna
+//            napr. u List, EnumSet (mnozina)...
+// @NotBlank = pouziti se Stringem, hodnota nesmi byt null, nesmi byt prazdna (musi byt delsi nez 0 znaku)
+//            kontroluje bily znaky (mezery, tabulatry..)
+
 public class RegistraceForm {
     @NotBlank
     private String jmeno;
     @NotBlank
     private String prijmeni;
-    @NotNull
+    @NotEmpty
     private EnumSet<Pohlavi> pohlavi;
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+//    @DateTimeFormat(pattern = "d. M. YYYY") =  mohu chtit, ze to ma byt v ceskem formatu
     private LocalDate datumNarozeni;
-    @NotNull
+    @NotEmpty
     private String turnus;
-    @NotNull
-    private EnumSet<Sport> sport;
-    @NotNull
+    @NotEmpty
+    private EnumSet<Sport> sport = EnumSet.noneOf(Sport.class);
+
     private String telefon;
     @Email
     private String email;

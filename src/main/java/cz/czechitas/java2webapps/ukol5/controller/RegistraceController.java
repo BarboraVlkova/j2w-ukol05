@@ -43,7 +43,7 @@ public class RegistraceController {
         }
 
 //      METODA PRO VYPOCET VEKU
-//      VYTVORENI PODMINEK
+//      VYTVORENI PODMINEK -> vek ditete, vyplneny sport
         Period period = form.getDatumNarozeni().until(LocalDate.now());
         int vek = period.getYears();
 
